@@ -11,12 +11,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.allergies_screen);
 
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
+        /**
+        Spinner mySpinner = (Spinner) findViewById(R.id.sexSpinner);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.sex));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
+         **/
     }
 }

@@ -7,18 +7,18 @@
     tools:context=".MainActivity">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/dgs"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="28dp"
             android:scaleType="fitXY"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/allergy"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             app:srcCompat="@drawable/ic_dgs" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/allergy"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="36dp"
@@ -29,55 +29,55 @@
             app:srcCompat="@drawable/ic_allergy" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/meds"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="@+id/allergy"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="@+id/allergy"
+            app:layout_constraintTop_toBottomOf="@+id/allergy"
             app:layout_constraintVertical_bias="0.365"
             app:srcCompat="@drawable/ic_meds" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/doc"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="@+id/dgs"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/imageButton2"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            app:layout_constraintStart_toStartOf="@+id/dgs"
+            app:layout_constraintTop_toBottomOf="@+id/dgs"
             app:layout_constraintVertical_bias="0.384"
             app:srcCompat="@drawable/ic_doc" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="409dp"
-            android:layout_height="1dp"
+            android:layout_height="5dp"
             android:layout_marginBottom="368dp"
-            android:background="?android:attr/listDivider"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:id="@+id/profpic"
+            android:layout_width="146dp"
+            android:layout_height="131dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_acc" />
 
         <RelativeLayout
-            android:layout_width="193dp"
-            android:layout_height="349dp"
+            android:layout_width="184dp"
+            android:layout_height="351dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
@@ -89,7 +89,7 @@
                     android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/txtFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="25dp"
@@ -97,7 +97,7 @@
 
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName7"
+                            android:id="@+id/inputFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -105,13 +105,13 @@
                             android:text="First Name" />
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/txtMiddleName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Middle Name:" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName8"
+                            android:id="@+id/inputMiddleName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -119,13 +119,13 @@
                             android:text="Middle Name" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/txtLastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Last Name:" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName9"
+                            android:id="@+id/inputLastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -133,13 +133,13 @@
                             android:text="Last Name" />
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/txtBirthDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Birthdate: " />
 
                         <EditText
-                            android:id="@+id/editTextDate2"
+                            android:id="@+id/inputBirthDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -147,13 +147,13 @@
                             android:text="MM/DD/YYYY" />
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/txtOcc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Occupation(Optional)" />
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName10"
+                            android:id="@+id/inputOcc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -165,39 +165,47 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="158dp"
-            android:layout_height="137dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="149dp"
+            android:layout_height="121dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="24dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/txtAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Age: " />
 
                 <EditText
-                    android:id="@+id/editTextNumber"
+                    android:id="@+id/inputAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/txtSex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sex:" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/sexSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="55dp"
+            android:layout_height="57dp"
+            app:srcCompat="@drawable/ic_back"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="5dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
