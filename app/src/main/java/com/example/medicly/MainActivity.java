@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.allergies_screen);
+        setContentView(R.layout.medications_screen);
 
         /**
         Spinner mySpinner = (Spinner) findViewById(R.id.sexSpinner);
