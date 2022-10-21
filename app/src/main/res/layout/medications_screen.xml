@@ -34,7 +34,7 @@
     </LinearLayout>
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/tabLayMed"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="317dp"
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toTopOf="@+id/addNoteTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayMed"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -102,11 +102,11 @@
         android:layout_height="wrap_content"
         android:text="Additional Notes:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/addNoteML"
-        app:layout_constraintStart_toStartOf="@+id/addNoteML" />
+        app:layout_constraintBottom_toTopOf="@+id/addNoteMultL"
+        app:layout_constraintStart_toStartOf="@+id/addNoteMultL" />
 
     <EditText
-        android:id="@+id/addNoteML"
+        android:id="@+id/addNoteMultL"
         android:layout_width="316dp"
         android:layout_height="156dp"
         android:layout_marginBottom="36dp"
