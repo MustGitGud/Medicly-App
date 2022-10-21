@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.medications_screen);
+        setContentView(R.layout.doc_prof_screen);
 
         /**
         Spinner mySpinner = (Spinner) findViewById(R.id.sexSpinner);
@@ -20,5 +20,6 @@ public class MainActivity extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
          **/
+
     }
 }
