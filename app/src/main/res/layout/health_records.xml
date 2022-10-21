@@ -210,9 +210,9 @@
             android:id="@+id/backBtnHRec"
             android:layout_width="55dp"
             android:layout_height="57dp"
-            app:srcCompat="@drawable/ic_back"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="5dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
