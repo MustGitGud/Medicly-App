@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B8E1FF"
     tools:context=".MainActivity">
 
         <ImageButton
             android:id="@+id/btnCon"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
             android:background="#428AF6"
+            android:padding="10dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recDivider"
@@ -22,8 +24,9 @@
             android:id="@+id/btnDoc"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:background="#FAB93C"
+            android:padding="10dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="@+id/btnCon"
             app:layout_constraintHorizontal_bias="0.0"
@@ -35,8 +38,9 @@
             android:id="@+id/btnMeds"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:background="#51FF58"
+            android:padding="10dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="@+id/btnAllergy"
             app:layout_constraintHorizontal_bias="0.0"
@@ -49,10 +53,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
             android:background="#FF3636"
-            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toStartOf="@+id/btnCon"
             app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,12 +68,12 @@
             android:id="@+id/recDivider"
             android:layout_width="409dp"
             android:layout_height="5dp"
-            android:layout_marginBottom="368dp"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/profPicUser"
@@ -78,6 +83,8 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="20dp"
+            android:scaleType="fitXY"
+            android:tint="#A9A9A9"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toStartOf="@+id/relativeLayout"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +109,7 @@
                             android:id="@+id/txtFName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="0dp"
                             android:text="First Name:" />
 
                         <EditText
@@ -176,7 +183,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="149dp"
-            android:layout_height="121dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="24dp"
@@ -215,9 +222,71 @@
             android:id="@+id/backBtnHRec"
             android:layout_width="55dp"
             android:layout_height="57dp"
+            android:background="#B8E1FF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/allergyTxtBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Allergies"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAllergy"
+            app:layout_constraintEnd_toEndOf="@+id/btnAllergy"
+            app:layout_constraintStart_toStartOf="@+id/btnAllergy"
+            app:layout_constraintTop_toTopOf="@+id/btnAllergy" />
+
+        <TextView
+            android:id="@+id/conTxtBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diagnosis/\nCondition"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCon"
+            app:layout_constraintEnd_toEndOf="@+id/btnCon"
+            app:layout_constraintStart_toStartOf="@+id/btnCon"
+            app:layout_constraintTop_toTopOf="@+id/btnCon" />
+
+        <TextView
+            android:id="@+id/medTxtBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medications"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMeds"
+            app:layout_constraintEnd_toEndOf="@+id/btnMeds"
+            app:layout_constraintStart_toStartOf="@+id/btnMeds"
+            app:layout_constraintTop_toTopOf="@+id/btnMeds" />
+
+        <TextView
+            android:id="@+id/docTxtBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doctor's \nProfile"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDoc"
+            app:layout_constraintEnd_toEndOf="@+id/btnDoc"
+            app:layout_constraintStart_toStartOf="@+id/btnDoc"
+            app:layout_constraintTop_toTopOf="@+id/btnDoc" />
+
+        <TextView
+            android:id="@+id/iphTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insert \nPhoto \nHere"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/profPicUser"
+            app:layout_constraintEnd_toEndOf="@+id/profPicUser"
+            app:layout_constraintStart_toStartOf="@+id/profPicUser"
+            app:layout_constraintTop_toTopOf="@+id/profPicUser" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
