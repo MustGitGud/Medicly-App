@@ -11,14 +11,13 @@
             android:id="@+id/btnCon"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
             android:background="#428AF6"
             android:padding="10dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recDivider"
-            app:srcCompat="@drawable/ic_dgs" />
+            app:srcCompat="@drawable/ic_dgs"
+            tools:layout_editor_absoluteY="374dp" />
 
         <ImageButton
             android:id="@+id/btnDoc"
@@ -53,7 +52,6 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
             android:background="#FF3636"
             android:padding="10dp"
@@ -61,44 +59,26 @@
             app:layout_constraintEnd_toStartOf="@+id/btnCon"
             app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recDivider"
-            app:srcCompat="@drawable/ic_allergy" />
-
-        <View
-            android:id="@+id/recDivider"
-            android:layout_width="409dp"
-            android:layout_height="5dp"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@drawable/ic_allergy"
+            tools:layout_editor_absoluteY="374dp" />
 
         <ImageView
             android:id="@+id/profPicUser"
             android:layout_width="146dp"
             android:layout_height="131dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="20dp"
             android:scaleType="fitXY"
             android:tint="#A9A9A9"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toStartOf="@+id/relativeLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_acc" />
+            app:srcCompat="@drawable/ic_acc"
+            tools:layout_editor_absoluteX="132dp"
+            tools:layout_editor_absoluteY="31dp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/relativeLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/recDivider"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="162dp">
 
                 <LinearLayout
                     android:layout_width="181dp"
@@ -110,38 +90,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="0dp"
-                            android:text="First Name:" />
+                            android:text="Full Name:" />
 
                         <EditText
                             android:id="@+id/inputFName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="" />
-
-                        <TextView
-                            android:id="@+id/txtMidName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Middle Name:" />
-
-                        <EditText
-                            android:id="@+id/inputMidName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="" />
-
-                        <TextView
-                            android:id="@+id/txtLName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Last Name:" />
-
-                        <EditText
-                            android:id="@+id/inputLName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -162,59 +114,37 @@
                             android:inputType="date"
                             android:text="MM/DD/YYYY" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="129dp"
+                    android:orientation="vertical">
+
                         <TextView
-                            android:id="@+id/txtOcc"
+                            android:id="@+id/txtAge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Occupation(Optional)" />
+                            android:text="Age: " />
 
                         <EditText
-                            android:id="@+id/inputOcc"
+                            android:id="@+id/inputAge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            android:text="" />
+                            android:inputType="number" />
 
+                        <TextView
+                            android:id="@+id/txtSex"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sex:" />
+
+                        <Spinner
+                            android:id="@+id/sexSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </LinearLayout>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="149dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/recDivider"
-            app:layout_constraintEnd_toStartOf="@+id/relativeLayout"
-            app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/txtAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Age: " />
-
-                <EditText
-                    android:id="@+id/inputAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-
-                <TextView
-                    android:id="@+id/txtSex"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sex:" />
-
-                <Spinner
-                    android:id="@+id/sexSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -291,6 +221,15 @@
             app:layout_constraintEnd_toEndOf="@+id/profPicUser"
             app:layout_constraintStart_toStartOf="@+id/profPicUser"
             app:layout_constraintTop_toTopOf="@+id/profPicUser" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medical Info"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="139dp"
+            tools:layout_editor_absoluteY="321dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
