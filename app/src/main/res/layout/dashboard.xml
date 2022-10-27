@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E43F6F"
+        android:padding="10dp"
+        android:text="Dashboard"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/medRecBtn"
+        android:layout_width="162dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#4770FF"
+        android:drawableBottom="@drawable/ic_medical_records"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:text="Medical Records"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/medCliLocBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <Button
+        android:id="@+id/medCliLocBtn"
+        android:layout_width="162dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#4770FF"
+        android:drawableBottom="@drawable/ic_google_map"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:text="Medical Clinic Scheduling"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+
+    <Button
+        android:id="@+id/AppSchedBtn"
+        android:layout_width="162dp"
+        android:layout_height="170dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#4770FF"
+        android:drawableBottom="@drawable/ic_calendar"
+        android:gravity="center"
+        android:paddingBottom="15sp"
+        android:text="Appointment Scheduling"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/medRecBtn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/medRecBtn"
+        app:layout_constraintTop_toBottomOf="@+id/medRecBtn"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <Button
+        android:id="@+id/AccSetBtn"
+        android:layout_width="162dp"
+        android:layout_height="170dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#A8BAFB"
+        android:drawableBottom="@drawable/ic_settings"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:text="Account Settings"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/medCliLocBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/medCliLocBtn"
+        app:layout_constraintTop_toBottomOf="@+id/medCliLocBtn"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/SgnOutTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="Sign Out"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="60dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitXY"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/SgnOutTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_logout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

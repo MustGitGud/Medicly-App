@@ -68,7 +68,7 @@
         android:layout_width="310dp"
         android:layout_height="346dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/custom_border"
+        android:background="@drawable/black_border"
         android:stretchColumns="0, 1"
         app:layout_constraintBottom_toTopOf="@+id/addSchedBtn"
         app:layout_constraintEnd_toEndOf="parent"
