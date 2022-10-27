@@ -8,7 +8,6 @@
         android:id="@+id/linLayCond"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,9 +34,9 @@
     <TableLayout
         android:id="@+id/tabLayCond"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
         android:stretchColumns="0,1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity=""
                     android:ems="10"
-                    android:text="Date"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:text="Date" />
 
             </TableRow>
 
@@ -86,51 +85,6 @@
             </TableRow>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
-
-                <EditText
-                    android:id="@+id/editTextDate2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity=""
-                    android:ems="10"
-                    android:text="Date"
-                    android:inputType="date" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/editTextTextMultiLine4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="144dp"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine" />
-            </TableRow>
-
-        </LinearLayout>
-
 
     </TableLayout>
 
