@@ -16,11 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBtnSched"
+        app:layout_constraintTop_toBottomOf="@+id/backBtn4"
         app:layout_constraintVertical_bias="0.112" />
 
     <ImageButton
-        android:id="@+id/backBtnSched"
+        android:id="@+id/backBtn4"
         android:layout_width="55dp"
         android:layout_height="57dp"
         app:layout_constraintStart_toStartOf="parent"
