@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCE4D8"
     tools:context=".MainActivity">
 
         <ImageButton
             android:id="@+id/backBtnHR"
             android:layout_width="55dp"
             android:layout_height="57dp"
-            android:background="@color/white"
+            android:background="#FCE4D8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back" />
@@ -90,7 +91,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:scaleType="fitXY"
-            android:tint="#A9A9A9"
+            android:tint="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
