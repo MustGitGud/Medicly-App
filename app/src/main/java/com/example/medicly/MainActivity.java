@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button sup = findViewById(R.id.signUp);
+        TextView sup = findViewById(R.id.signUp);
         sup.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), SignUp.class);
