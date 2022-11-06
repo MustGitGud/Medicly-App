@@ -28,7 +28,7 @@ public class HealthRecords extends AppCompatActivity {
             }
         });
 
-        ImageButton btnA = findViewById(R.id.btnAllergy);
+        Button btnA = findViewById(R.id.btnAllergy);
         btnA.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), Allergies.class);
@@ -36,7 +36,7 @@ public class HealthRecords extends AppCompatActivity {
             }
         });
 
-        ImageButton btnB = findViewById(R.id.btnCon);
+        Button btnB = findViewById(R.id.btnCon);
         btnB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), Diagnosis.class);
@@ -44,7 +44,7 @@ public class HealthRecords extends AppCompatActivity {
             }
         });
 
-        ImageButton btnC = findViewById(R.id.btnMeds);
+        Button btnC = findViewById(R.id.btnMeds);
         btnC.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), Medications.class);
@@ -52,7 +52,7 @@ public class HealthRecords extends AppCompatActivity {
             }
         });
 
-        ImageButton btnD = findViewById(R.id.btnDoc);
+        Button btnD = findViewById(R.id.btnDoc);
         btnD.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), DocProf.class);
