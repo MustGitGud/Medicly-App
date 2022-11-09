@@ -21,8 +21,10 @@
             android:id="@+id/gridLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:useDefaultMargins="true"
+            android:layout_marginEnd="15dp"
             android:background="@drawable/black_border"
+            android:useDefaultMargins="true"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profPicUser"
@@ -84,18 +86,18 @@
                     android:layout_column="0" />
         </GridLayout>
 
-        <ImageView
-            android:id="@+id/profPicUser"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:scaleType="fitXY"
-            android:tint="@color/black"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_acc"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_acc" />
+            app:layout_constraintVertical_bias="0.431" />
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -174,6 +176,7 @@
                     android:textSize="31sp" />
 
         </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
