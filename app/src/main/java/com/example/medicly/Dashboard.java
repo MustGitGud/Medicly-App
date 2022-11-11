@@ -2,10 +2,15 @@ package com.example.medicly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -25,7 +30,7 @@ public class Dashboard extends AppCompatActivity {
         Button btn2 = findViewById(R.id.medCliLocBtn);
         btn2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent i1 = new Intent(getApplicationContext(), Map.class);
+                Intent i1 = new Intent(Dashboard.this, Map.class);
                 startActivity(i1);
             }
         });
@@ -55,4 +60,5 @@ public class Dashboard extends AppCompatActivity {
         });
 
     }
+
 }
