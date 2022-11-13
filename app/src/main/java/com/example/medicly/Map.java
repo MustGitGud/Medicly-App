@@ -59,7 +59,7 @@ public class Map extends FragmentActivity implements
     SupportMapFragment mapFragment;
     View mapView;
     SearchView searchView;
-    double latitude, longitude;
+    private double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +81,25 @@ public class Map extends FragmentActivity implements
                     Geocoder geocoder = new Geocoder(Map.this);
                     try {
                         addressList = geocoder.getFromLocationName(location, 1);
+                        if (addressList != null){
+                            for (int i=0; i<addressList.size(); i++){
+                                Address userAddress = addressList.get(i);
+                                LatLng latLng = new LatLng(userAddress.getLatitude(),  userAddress.getLongitude());
+
+                                MarkerOptions userMarkerOptions = new MarkerOptions();
+                                userMarkerOptions.position(latLng);
+                                userMarkerOptions.title(location);
+                                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                                mMap.addMarker(userMarkerOptions);
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+                            }
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                }else{
+                    Toast.makeText(Map.this, "Location not found", Toast.LENGTH_LONG).show();
                 }
                 return false;
             }
@@ -109,6 +121,7 @@ public class Map extends FragmentActivity implements
         GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
 
         switch (v.getId()){
+
             case R.id.nearbyClinics:
                 mMap.clear();
                 String url = getUrl(latitude, longitude, hospital);
@@ -221,7 +234,7 @@ public class Map extends FragmentActivity implements
         currentUserLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(15));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
         if (googleApiClient != null){
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
@@ -231,8 +244,8 @@ public class Map extends FragmentActivity implements
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(100);
-        locationRequest.setFastestInterval(100);
+        locationRequest.setInterval(1100);
+        locationRequest.setFastestInterval(1100);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
