@@ -18,6 +18,7 @@ import android.location.Location;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -53,10 +54,12 @@ public class Map extends FragmentActivity implements
     private Location lastLocation;
     private Marker currentUserLocationMarker;
     private static final int Request_User_Location_Code = 99;
-    LocationRequest locationRequest;
+    private LocationRequest locationRequest;
+    private int ProximityRadius = 10000;
     SupportMapFragment mapFragment;
     View mapView;
     SearchView searchView;
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,38 @@ public class Map extends FragmentActivity implements
         mapView = findViewById(R.id.maps);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
         mapFragment.getMapAsync(this);
+    }
+
+    public void onClick(View v){
+        String hospital = "Hospital";
+        Object transferData[] = new Object[2];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+
+        switch (v.getId()){
+            case R.id.nearbyClinics:
+                mMap.clear();
+                String url = getUrl(latitude, longitude, hospital);
+                transferData[0] = mMap;
+                transferData[1] = url;
+
+                getNearbyPlaces.execute(transferData);
+                Toast.makeText(this, "Searching for nearby Hospitals",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Showing nearby Hospitals",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    private String getUrl(double latitude, double longitude, String nearbyPlace){
+        StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googleURL.append("location" + latitude + "," + longitude);
+        googleURL.append("&radius" + ProximityRadius);
+        googleURL.append("&type=" + nearbyPlace);
+        googleURL.append("&sensor=true");
+        googleURL.append("&key=" + "AIzaSyCB2-1TEQD16QxqFfex9sWS6e7MpFXhHag");
+
+        Log.d("Map", "url = "  + googleURL.toString());
+
+        return googleURL.toString();
     }
 
     @Override
@@ -170,6 +205,9 @@ public class Map extends FragmentActivity implements
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
+
         lastLocation = location;
         if(currentUserLocationMarker != null){
             currentUserLocationMarker.remove();
