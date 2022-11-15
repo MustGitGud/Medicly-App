@@ -1,23 +1,15 @@
 package com.example.medicly;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -25,99 +17,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Allergies extends AppCompatActivity {
 
+    // reference to allergies collection in Firestore
     public static final String ALLERGIES_COLLECTION = "allergies";
-    public static final String ALLERGIES_TITLE_FIELD = "title";
-    public static final String ALLERGIES_DESCRIPTION_FIELD = "description";
-    public static final String ALLERGIES_OWNER_FIELD = "owner";
-
-    public static class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdapter.AllergiesListViewHolder> {
-
-        private List<Map<String, String>> data;
-
-        @SuppressLint("NotifyDataSetChanged")
-        public void setData(List<Map<String, String>> data) {
-            this.data = data;
-            this.notifyDataSetChanged();
-        }
-
-        @NonNull
-        @Override
-        public AllergiesListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.allergies_list_item, parent, false);
-            return new AllergiesListViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull AllergiesListViewHolder holder, int position) {
-            Map<String, String> entry = data.get(position);
-            holder.title.setText(entry.get(ALLERGIES_TITLE_FIELD));
-            holder.description.setText(entry.get(ALLERGIES_DESCRIPTION_FIELD));
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(holder.itemView.getContext(), AllergiesEditor.class);
-                    intent.putExtra(AllergiesEditor.ALLERGY_ID_KEY, entry.get("id"));
-                    holder.itemView.getContext().startActivity(intent);
-                }
-            });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    new AlertDialog.Builder(holder.itemView.getContext())
-                            .setTitle("Delete")
-                            .setMessage("Are you sure you want to delete this entry?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                    String id = entry.get("id");
-                                    if (id != null) {
-                                        FirebaseFirestore.getInstance()
-                                                .collection(ALLERGIES_COLLECTION)
-                                                .document(id)
-                                                .delete();
-                                    }
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .show();
-                    return false;
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            if (data != null) {
-                return data.size();
-            } else {
-                return 0;
-            }
-        }
-
-        public static class AllergiesListViewHolder extends RecyclerView.ViewHolder {
-
-            TextView title, description;
-
-            public AllergiesListViewHolder(@NonNull View itemView) {
-                super(itemView);
-                title = itemView.findViewById(R.id.title);
-                description = itemView.findViewById(R.id.description);
-            }
-        }
-    }
 
     private AllergiesListAdapter adapter;
 
@@ -143,40 +47,45 @@ public class Allergies extends AppCompatActivity {
 
         adapter = new AllergiesListAdapter();
         RecyclerView allergiesList = findViewById(R.id.allergiesList);
+
+        // add a line to separate each row
         allergiesList.addItemDecoration(new DividerItemDecoration(Allergies.this, DividerItemDecoration.VERTICAL));
+
         allergiesList.setAdapter(adapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        // Get real-time updates in RecyclerView
+        // reference: https://firebase.google.com/docs/firestore/query-data/listen
+        //
+        // *This is added in onStart() because the event listener for real-time
+        // updates is automatically removed in onStop() to avoid NullPointerExceptions
         FirebaseFirestore.getInstance()
                 .collection(ALLERGIES_COLLECTION)
-                .whereEqualTo(ALLERGIES_OWNER_FIELD, "auth") // TODO get owner id from Firebase Auth
+                .whereEqualTo("owner", "auth") // TODO get current user id (patient id) from Firebase Auth (FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        // ensure that there are no problems with displaying allergy data
                         if (error != null || value == null || adapter == null) return;
-                        ArrayList<Map<String, String>> output = new ArrayList<>();
+
+                        ArrayList<Allergy> output = new ArrayList<>();
                         for (QueryDocumentSnapshot snapshot : value) {
-                            Map<String, String> data = readData(snapshot);
-                            if (data != null) {
-                                data.put("id", snapshot.getId());
-                                output.add(data);
-                            }
+                            // convert raw data to allergy (Allergy.java)
+                            Allergy data = snapshot.toObject(Allergy.class);
+
+                            // Manually add the id in the newly created allergy (Allergy.java) instance
+                            // since the id is not stored as a field (e.g. title, description, owner)
+                            //
+                            // Instead, the id is taken from the document name
+                            data.setId(snapshot.getId());
+
+                            output.add(data);
                         }
                         adapter.setData(output);
                     }
                 });
-    }
-
-    public static Map<String, String> readData(DocumentSnapshot documentSnapshot) {
-        Map<String, Object> data = documentSnapshot.getData();
-        if (data == null) return null;
-        Map<String, String> output = new HashMap<>();
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            output.put(entry.getKey(), entry.getValue().toString());
-        }
-        return output;
     }
 }
