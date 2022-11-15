@@ -14,7 +14,7 @@ public class AccountSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_settings);
 
-        ImageButton bckBtn = findViewById(R.id.backBtnHR);
+        Button bckBtn = findViewById(R.id.backBtnHR);
         bckBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent i1 = new Intent(getApplicationContext(), Dashboard.class);
