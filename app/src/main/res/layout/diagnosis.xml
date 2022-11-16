@@ -35,11 +35,10 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/linLayCondPrim"
+        android:id="@+id/condList"
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_margin="10dp"
-
         tools:listitem="@layout/diagnosis_list_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/addBtnCond"
