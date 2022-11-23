@@ -72,12 +72,12 @@ public class Allergies extends AppCompatActivity {
                         // ensure that there are no problems with displaying allergy data
                         if (error != null || value == null || adapter == null) return;
 
-                        ArrayList<Allergy> output = new ArrayList<>();
+                        ArrayList<AllergyData> output = new ArrayList<>();
                         for (QueryDocumentSnapshot snapshot : value) {
-                            // convert raw data to allergy (Allergy.java)
-                            Allergy data = snapshot.toObject(Allergy.class);
+                            // convert raw data to allergy (AllergyData.java)
+                            AllergyData data = snapshot.toObject(AllergyData.class);
 
-                            // Manually add the id in the newly created allergy (Allergy.java) instance
+                            // Manually add the id in the newly created allergy (AllergyData.java) instance
                             // since the id is not stored as a field (e.g. title, description, owner)
                             //
                             // Instead, the id is taken from the document name

@@ -135,13 +135,13 @@ public class Map extends FragmentActivity implements
         }
     }
 
-    private String getUrl(double latitude, double longitude, String nearbyPlace){
+    private String getUrl(double latitude, double longitude, String nearbyPlaces){
         StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         googleURL.append("location" + latitude + "," + longitude);
         googleURL.append("&radius" + ProximityRadius);
-        googleURL.append("&type=" + nearbyPlace);
+        googleURL.append("&type=" + nearbyPlaces);
         googleURL.append("&sensor=true");
-        googleURL.append("&key=" + "AIzaSyCB2-1TEQD16QxqFfex9sWS6e7MpFXhHag");
+        googleURL.append("&key=" + "AIzaSyDLimYqtHBZjjfIQy0kelk2gdsG5c6pc10");
 
         Log.d("Map", "url = "  + googleURL.toString());
 

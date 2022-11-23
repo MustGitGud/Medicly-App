@@ -18,9 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.UUID;
 
-public class AllergiesEditor extends AppCompatActivity {
+public class DiagnosisEditor extends AppCompatActivity {
 
-    public static final String ALLERGY_ID_KEY = "allergy_id";
+    public static final String DIAGNOSIS_ID_KEY = "diagnosis_id";
 
     private static final String LOADING_MESSAGE = "Loading...";
     private static final String SAVING_MESSAGE = "Saving...";
@@ -31,37 +31,28 @@ public class AllergiesEditor extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.allergies_editor);
+        setContentView(R.layout.diagnosis_editor);
 
-        ImageButton bckBtn = findViewById(R.id.bckBtnAllergy);
+        ImageButton bckBtn = findViewById(R.id.bckBtnCond);
         bckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
 
-        EditText title = findViewById(R.id.title);
-        EditText description = findViewById(R.id.description);
+        EditText title = findViewById(R.id.diagTitle);
+        EditText description = findViewById(R.id.diagDescription);
+        EditText date = findViewById(R.id.diagDate);
 
         final String id;
-        if (!getIntent().hasExtra(ALLERGY_ID_KEY)) {
-            // id does not exist, therefore a new id must be generated
+        if (!getIntent().hasExtra(DIAGNOSIS_ID_KEY)) {
             id = UUID.randomUUID().toString();
         } else {
-            /*
-             * Retrieve data passed from previous activity
-             * reference: https://developer.android.com/reference/android/content/Intent#getStringExtra(java.lang.String)
-             */
-            id = getIntent().getStringExtra(ALLERGY_ID_KEY);
+            id = getIntent().getStringExtra(DIAGNOSIS_ID_KEY);
 
             showLoadingDialog();
 
-            // id exists, therefore associated data must be retrieved from Firestore so that it can be edited
-            /*
-             * Read data.
-             * reference: https://firebase.google.com/docs/firestore/query-data/get-data#get_a_document
-             */
-            FirebaseFirestore.getInstance().collection(Allergies.ALLERGIES_COLLECTION)
+            FirebaseFirestore.getInstance().collection(Diagnosis.DIAGNOSIS_COLLECTION)
                     .document(id)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -71,17 +62,13 @@ public class AllergiesEditor extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                             if (documentSnapshot.exists()) {
-                                // convert raw data to allergyData (AllergyData.java)
-                                AllergyData allergyData = documentSnapshot.toObject(AllergyData.class);
-                                if (allergyData != null) {
-                                    // Manually add the id in the newly created allergyData (AllergyData.java) instance
-                                    // since the id is not stored as a field (e.g. title, description, owner)
-                                    //
-                                    // Instead, the id is taken from the document name
-                                    allergyData.setId(documentSnapshot.getId());
+                                DiagnosisData diagnosisData = documentSnapshot.toObject(DiagnosisData.class);
+                                if (diagnosisData != null) {
+                                    diagnosisData.setId(documentSnapshot.getId());
 
-                                    title.setText(allergyData.getTitle());
-                                    description.setText(allergyData.getDescription());
+                                    title.setText(diagnosisData.getTitle());
+                                    description.setText(diagnosisData.getDescription());
+                                    date.setText(diagnosisData.getDate());
                                 } else {
                                     showErrorDialog(null);
                                 }
@@ -92,28 +79,27 @@ public class AllergiesEditor extends AppCompatActivity {
                     });
         }
 
-        findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.diagSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showSavingDialog();
-                AllergyData allergyData = new AllergyData(
+                DiagnosisData diagnosisData = new DiagnosisData(
                         id,
                         title.getText().toString(),
                         description.getText().toString(),
-                        "auth" // TODO get current user id (patient id) from Firebase Auth (FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        date.getText().toString(),
+                        "auth"
                 );
-                save(allergyData);
+                save(diagnosisData);
             }
         });
     }
 
-    private void save(AllergyData allergyData) {
-        // Create or overwrite a document.
-        // reference: https://firebase.google.com/docs/firestore/manage-data/add-data#set_a_document
+    private void save(DiagnosisData diagnosisData) {
         FirebaseFirestore.getInstance()
-                .collection(Allergies.ALLERGIES_COLLECTION)
-                .document(allergyData.getId())
-                .set(allergyData)
+                .collection(Diagnosis.DIAGNOSIS_COLLECTION)
+                .document(diagnosisData.getId())
+                .set(diagnosisData)
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -122,7 +108,7 @@ public class AllergiesEditor extends AppCompatActivity {
                         }
                         finish();
                     }
-                }).addOnFailureListener(AllergiesEditor.this, new OnFailureListener() {
+                }).addOnFailureListener(DiagnosisEditor.this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         showErrorDialog(e.getMessage() == null ? ERROR_MESSAGE : e.getMessage());
@@ -134,7 +120,7 @@ public class AllergiesEditor extends AppCompatActivity {
         if (dialog != null) {
             dialog.dismiss();
         }
-        dialog = new AlertDialog.Builder(AllergiesEditor.this)
+        dialog = new AlertDialog.Builder(DiagnosisEditor.this)
                 .setMessage(SAVING_MESSAGE)
                 .setCancelable(false)
                 .show();
@@ -144,7 +130,7 @@ public class AllergiesEditor extends AppCompatActivity {
         if (dialog != null) {
             dialog.dismiss();
         }
-        dialog = new AlertDialog.Builder(AllergiesEditor.this)
+        dialog = new AlertDialog.Builder(DiagnosisEditor.this)
                 .setMessage(LOADING_MESSAGE)
                 .setCancelable(false)
                 .show();
@@ -154,7 +140,7 @@ public class AllergiesEditor extends AppCompatActivity {
         if (dialog != null) {
             dialog.dismiss();
         }
-        dialog = new AlertDialog.Builder(AllergiesEditor.this)
+        dialog = new AlertDialog.Builder(DiagnosisEditor.this)
                 .setTitle("Error")
                 .setMessage(message)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -165,4 +151,5 @@ public class AllergiesEditor extends AppCompatActivity {
                 })
                 .show();
     }
+
 }

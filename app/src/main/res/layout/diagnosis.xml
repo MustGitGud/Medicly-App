@@ -44,9 +44,8 @@
         app:layout_constraintBottom_toTopOf="@+id/addBtnCond"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linLayCond">
+        app:layout_constraintTop_toBottomOf="@+id/linLayCond"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/addBtnCond"

@@ -3,23 +3,23 @@ package com.example.medicly;
 import com.google.firebase.firestore.Exclude;
 
 // class to hold allergy data
-public class Allergy {
+public class AllergyData {
 
     @Exclude private String id; // prevent from being stored as a field in Firestore
     private String title;
     private String description;
     private String owner;
 
-    public Allergy() {
+    public AllergyData() {
     }
 
-    public Allergy(String title, String description, String owner) {
+    public AllergyData(String title, String description, String owner) {
         this.title = title;
         this.description = description;
         this.owner = owner;
     }
 
-    public Allergy(String id, String title, String description, String owner) {
+    public AllergyData(String id, String title, String description, String owner) {
         this.id = id;
         this.title = title;
         this.description = description;
