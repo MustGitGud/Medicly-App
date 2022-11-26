@@ -1,7 +1,6 @@
 package com.example.medicly;
 
-
-import static com.example.medicly.Allergies.ALLERGIES_COLLECTION;
+import static com.example.medicly.Medications.MEDICATIONS_COLLECTION;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,34 +19,30 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-/*
- * RecyclerView adapter
- * reference: https://developer.android.com/develop/ui/views/layout/recyclerview#java
- */
-public class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdapter.AllergiesListViewHolder> {
+public class MedsListAdapter extends RecyclerView.Adapter<MedsListAdapter.MedsListViewHolder> {
 
-    private List<AllergyData> data;
+    private List<MedsData> data;
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setData(List<AllergyData> data) {
+    public void setData(List<MedsData> data) {
         this.data = data;
         this.notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public AllergiesListAdapter.AllergiesListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MedsListAdapter.MedsListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.allergies_list_item, parent, false);
-        return new AllergiesListAdapter.AllergiesListViewHolder(view);
+        View view = inflater.inflate(R.layout.medications_list_item, parent, false);
+        return new MedsListAdapter.MedsListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllergiesListAdapter.AllergiesListViewHolder holder, int position) {
-        AllergyData entry = data.get(position);
+    public void onBindViewHolder(@NonNull MedsListAdapter.MedsListViewHolder holder, int position) {
+        MedsData entry = data.get(position);
 
-        holder.title.setText(entry.getTitle());
-        holder.description.setText(entry.getDescription());
+        holder.medicine.setText(entry.getMedicine());
+        holder.intake.setText(entry.getIntake());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +50,7 @@ public class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdap
                 Context contextForIntent = holder.itemView.getContext();
                 String idOfNoteToEdit = entry.getId();
 
-                openAllergiesEditor(contextForIntent, idOfNoteToEdit);
+                openMedicationsEditor(contextForIntent, idOfNoteToEdit);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -80,14 +74,10 @@ public class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdap
         }
     }
 
-    private void openAllergiesEditor(Context contextForIntent, String idOfNoteToEdit) {
-        Intent intent = new Intent(contextForIntent, AllergiesEditor.class);
+    private void openMedicationsEditor(Context contextForIntent, String idOfNoteToEdit) {
+        Intent intent = new Intent(contextForIntent, MedicationsEditor.class);
 
-        /*
-         * Pass data to another activity
-         * reference: https://developer.android.com/reference/android/content/Intent#putExtra(java.lang.String,%20java.lang.String)
-         */
-        intent.putExtra(AllergiesEditor.ALLERGY_ID_KEY, idOfNoteToEdit);
+        intent.putExtra(MedicationsEditor.MEDICATIONS_ID_KEY, idOfNoteToEdit);
 
         contextForIntent.startActivity(intent);
     }
@@ -101,14 +91,10 @@ public class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdap
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
 
-                        // ensure id is not null before deleting to avoid errors with firebase
                         if (idOfNoteToDelete != null) {
-                            /*
-                             * Delete a document
-                             * reference: https://firebase.google.com/docs/firestore/manage-data/delete-data#delete_documents
-                             */
+
                             FirebaseFirestore.getInstance()
-                                    .collection(ALLERGIES_COLLECTION)
+                                    .collection(MEDICATIONS_COLLECTION)
                                     .document(idOfNoteToDelete)
                                     .delete();
                         }
@@ -117,22 +103,21 @@ public class AllergiesListAdapter extends RecyclerView.Adapter<AllergiesListAdap
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // do nothing, just close dialog when user clicks "No"
                         dialog.dismiss();
                     }
                 })
                 .show();
     }
 
-    // class to hold references to views (title and description) of each row (allergy)
-    public static class AllergiesListViewHolder extends RecyclerView.ViewHolder {
+    public static class MedsListViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, description;
+        TextView medicine, intake;
 
-        public AllergiesListViewHolder(@NonNull View itemView) {
+        public MedsListViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.title);
-            description = itemView.findViewById(R.id.description);
+            medicine = itemView.findViewById(R.id.medCol);
+            intake = itemView.findViewById(R.id.intCol);
         }
     }
+
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#9ff590"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,19 +11,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#66d453"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/bckBtnMed"
             android:layout_width="68dp"
             android:layout_height="fill_parent"
-            android:background="#66d453"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_back" />
+            android:background="@drawable/ic_back"
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/medTxt"
@@ -29,22 +26,18 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Medication"
+            android:textColor="@color/black"
             android:textSize="50sp" />
 
     </LinearLayout>
 
     <TableLayout
         android:id="@+id/tabLayMed"
-        android:layout_width="317dp"
+        android:layout_width="wrap_content"
         android:layout_height="285dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/black_border"
-        android:stretchColumns="0,1,2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        android:layout_margin="20dp"
+        android:background="@drawable/black_border_2"
+        android:stretchColumns="0,1,2">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -52,72 +45,74 @@
 
             <TextView
                 android:id="@+id/medCol"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/black_border"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Medicine"
-                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:gravity="center"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/intCol"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/black_border"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Intake"
-                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:gravity="center"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/statCol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Status"
-                android:textAlignment="center"
-                android:textSize="24sp" />
 
         </TableRow>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/medsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
     </TableLayout>
 
     <Button
         android:id="@+id/addBtnMed"
-        android:layout_width="317dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
         android:text="Add"
-        app:layout_constraintBottom_toTopOf="@+id/addNoteTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayMed"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="25sp"
+        android:padding="15dp"
+        android:background="@drawable/log_in_btn_bg" />
 
     <TextView
         android:id="@+id/addNoteTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Additional Notes:"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/addNoteML"
-        app:layout_constraintStart_toStartOf="@+id/addNoteML" />
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp" />
 
     <EditText
         android:id="@+id/addNoteML"
-        android:layout_width="316dp"
-        android:layout_height="156dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="36dp"
         android:ems="10"
-        android:background="@drawable/black_border"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/black_border_2"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/black"
+        android:inputType="textMultiLine" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

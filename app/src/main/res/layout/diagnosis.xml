@@ -30,6 +30,7 @@
             android:layout_height="fill_parent"
             android:gravity="center"
             android:text="Conditions"
+            android:textColor="@color/black"
             android:textSize="50sp" />
 
     </LinearLayout>
