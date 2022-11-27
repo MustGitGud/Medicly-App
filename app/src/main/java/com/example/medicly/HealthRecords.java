@@ -6,28 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.app.Activity;
 import android.widget.*;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.UUID;
 
 public class HealthRecords extends AppCompatActivity {
@@ -36,12 +32,15 @@ public class HealthRecords extends AppCompatActivity {
     public Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference documentReference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health_records);
+        documentReference = db.collection("user").document("profile");
         profilePic = findViewById(R.id.profile_image);
 
         storage = FirebaseStorage.getInstance();
@@ -94,12 +93,28 @@ public class HealthRecords extends AppCompatActivity {
 
         Button btnD = findViewById(R.id.btnDoc);
         btnD.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent i1 = new Intent(getApplicationContext(), DocProf.class);
-                startActivity(i1);
+            @Override
+            public void onClick(View view) {
+                ShowProfile(view);
             }
         });
 
+    }
+
+    public void ShowProfile(View view){
+        documentReference.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.getResult().exists()){
+                            Intent intent = new Intent(HealthRecords.this, DocProf.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(HealthRecords.this, DocProfCreator.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
     }
 
     private void choosePicture() {
