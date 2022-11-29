@@ -12,13 +12,14 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/sg_bold"
         android:text="Dashboard"
         android:textColor="#000000"
-        android:textSize="60sp"
-        android:gravity="center" />
+        android:textSize="50sp"
+        android:gravity="start" />
 
     <TextView
         android:id="@+id/textView4"
@@ -26,10 +27,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/sg_medium"
         android:text="Welcome User!"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
         android:textColor="@color/black"
         android:layout_below="@+id/textView2"
-        android:layout_marginStart="50dp"
+        android:gravity="start"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -37,10 +39,12 @@
         android:layout_width="fill_parent"
         android:layout_height="500dp"
         android:layout_below="@+id/textView4"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/roundstyle">
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/roundstyle"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <GridLayout
             android:id="@+id/gridLayout"
@@ -62,7 +66,7 @@
                 android:gravity="center"
                 android:paddingBottom="15dp"
                 android:text="Medical Records"
-                android:textSize="20sp" />
+                android:textSize="19sp" />
 
 
             <Button
@@ -89,7 +93,7 @@
                 android:gravity="center"
                 android:paddingBottom="15sp"
                 android:text="Appointment Scheduling"
-                android:textSize="19sp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/AccSetBtn"
@@ -100,7 +104,7 @@
                 android:gravity="center"
                 android:paddingBottom="15dp"
                 android:text="Account Settings"
-                android:textSize="20sp" />
+                android:textSize="19sp" />
 
         </GridLayout>
 
@@ -108,8 +112,8 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="vertical">
 

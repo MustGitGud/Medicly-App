@@ -109,7 +109,7 @@
                     android:fontFamily="@font/sg_bold"
                     android:text="Medical Info"
                     android:textColor="@color/white"
-                    android:textSize="40sp" />
+                    android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/btnAllergy"
@@ -126,7 +126,7 @@
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:elevation="2dp"
-                    android:textSize="35sp" />
+                    android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/btnCon"
@@ -143,7 +143,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:elevation="2dp"
-                    android:textSize="30sp" />
+                    android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/btnMeds"
@@ -160,7 +160,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:elevation="2dp"
-                    android:textSize="38sp" />
+                    android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/btnDoc"
@@ -176,7 +176,7 @@
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:elevation="2dp"
-                    android:textSize="31sp" />
+                    android:textSize="25sp" />
 
         </LinearLayout>
 

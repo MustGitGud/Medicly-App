@@ -32,7 +32,7 @@ public class Schedule extends AppCompatActivity {
         ImageButton bckBtn = findViewById(R.id.backBtnSched);
         bckBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent i1 = new Intent(getApplicationContext(), HealthRecords.class);
+                Intent i1 = new Intent(getApplicationContext(), Dashboard.class);
                 startActivity(i1);
             }
         });
